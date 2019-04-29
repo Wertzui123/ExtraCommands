@@ -18,7 +18,7 @@ commands:
     description: Set gamemode to survival mode
   gma:
     description: Set gamemode to adventure mode  
-gmspc:
+  gmspc:
     description: Set gamemode to spectator mode
   day:
     description: Set time to day
