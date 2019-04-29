@@ -136,31 +136,19 @@ foreach($this->getServer()->getOnlinePlayers() as $player) {
           return true;
       }	
 		
-if($cmd->getName() == "nv") {
-	  if($sender instanceof Player) {
-		if($sender->hasPermission("nv.use")) 
-			if(!empty($args[0])) {
-				$sender->sendMessage($this->fts . TF::RED . " Syntax /nv <on/off>");
-			}
-			  if($args[0] == "on")
-				$sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
-				$sender->sendMessage($this->fts . TF::GREEN . " Night vision activated");
-                return true;
-				}
-			  if($args[0] == "off") {
-				if($sender->hasEffect(Effect::NIGHT_VISION)) {
-				    $sender->removeEffect(Effect::NIGHT_VISION);
-				$sender->sendMessage($this->fts . TF::RED . " Night vision deactivated");
-				}
-                    
-		     }
-		  }else{
-		  $sender->sendMessage($this->fts . TF::RED . " You are not allowed to use this command");
-		
-	  return true;
-	     }
-	  }
-      }
+    if ($cmd->getName() == "nv") {
+        if ($sender instanceof Player) {
+            if ($sender->hasPermission("nv.use")) {
+                if ($sender->hasEffect(Effect::NIGHT_VISION)) {
+                    $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999 * 20), (1), (false)));
+                    $sender->sendMessage($this->fts . TF::GREEN . " Night vision activated");
+                } else {
+                    $sender->removeEffect(Effect::NIGHT_VISION);
+                    $sender->sendMessage($this->fts . TF::RED . " Night vision deactivated");
+                }
+            }
+        }
+    }
 if($cmd->getName() == "vanish") {
 	  if($sender instanceof Player) {
 		if($sender->hasPermission("vanish.use")) {
