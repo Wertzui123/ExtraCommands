@@ -114,18 +114,19 @@ class Main extends PluginBase
             return true;
         }
 
-        if ($cmd->getName() == "cclear") {
-            foreach ($this->getServer()->getOnlinePlayers() as $player) {
-                $player->sendMessage("n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n $this->fts . TF::GREEN . Chat cleared");
+        if ($cmd->getName() == "cclear"){
                 if ($sender instanceof Player) {
                     if ($sender->hasPermission("ccclear.use")) {
-                    } else {
+                        foreach ($this->getServer()->getOnlinePlayers() as $player) {
+                $player->sendMessage("n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n $this->fts . TF::GREEN . Chat cleared");
+                        }
+                        } else {
                         $sender->sendMessage($this->fts . TF::RED . "You are not allowed to use this command");
                     }
                 }
                 return true;
-            }
         }
+
         if ($cmd->getName() == "night") {
             if ($sender instanceof Player) {
                 if ($sender->hasPermission("night.use")) {
@@ -158,8 +159,7 @@ class Main extends PluginBase
                     if (!empty($args[0])) {
                         $sender->sendMessage($this->fts . TF::RED . " Syntax /vanish <on/off>");
                     }
-                    if ($args[0] == "on") {
-                        $sender->setDisplayName($sender->getName());
+                    if ($args[0] == "on"){
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::INVISIBILITY), (99999999 * 20), (1), (false)));
                         $sender->sendMessage($this->fts . TF::GREEN . " Vanish activated");
                         return true;
